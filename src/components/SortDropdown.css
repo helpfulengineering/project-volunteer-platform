@@ -1,0 +1,35 @@
+.sort-by {
+    display: flex;
+    align-items: center;
+  }
+  
+  .sort-by label {
+    margin-right: 0.25rem;
+  }
+  
+  .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .custom-select-wrapper select {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0.25rem 1.5rem 0.25rem 0.25rem;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    color: inherit;
+  }
+  
+  .custom-select-wrapper::after {
+    content: "▾";
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #555;
+    pointer-events: none;
+  }

@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '../components/Card';
+import SortDropdown from '../components/SortDropdown'; // ✅ import it
 import projectsIcon from '../assets/projects_icon.png';
 import './MyProjects.css';
 
 const MyProjects: React.FC = () => {
+  const [sortValue, setSortValue] = useState("recent");
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortValue(e.target.value);
+    // TODO: sort logic goes here
+  };
+
   return (
     <main className="my-projects-content">
       <div className="content-header">
         <h2>My Projects</h2>
-        <div className="sort-by">
-          <label htmlFor="sortBy">Sort by:</label>
-          <select id="sortBy">
-            <option value="recent">Most Recent</option>
-            <option value="oldest">Oldest</option>
-          </select>
-        </div>
+        <SortDropdown value={sortValue} onChange={handleSortChange} />
       </div>
+
       <section className="dashboard-section">
-        {/* Use the Card component */}
         <Card
           title="Project Title 1"
           info="Author 1 • Date 1"

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '../components/Card';
+import SortDropdown from '../components/SortDropdown';
 import dashboardIcon from '../assets/dashboard_icon.png';
 import dashboardImage from '../assets/dashboard_image.png';
 import './DashboardView.css';
 
 const DashboardView: React.FC = () => {
+
+  const [sortValue, setSortValue] = useState("recent");
+  
+    const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setSortValue(e.target.value);
+      // TODO: sort logic goes here
+    };
+  
   return (
     <main className="dashboard-view-content">
       {/* Wide Container Section */}
@@ -25,13 +34,7 @@ const DashboardView: React.FC = () => {
       {/* Project Updates Section */}
       <div className="content-header">
         <h2>Project Updates</h2>
-        <div className="sort-by">
-          <label htmlFor="sortBy">Sort by:</label>
-          <select id="sortBy">
-            <option value="recent">Most Recent</option>
-            <option value="oldest">Oldest</option>
-          </select>
-        </div>
+        <SortDropdown value={sortValue} onChange={handleSortChange} />
       </div>
       <section className="dashboard-section">
         {/* Use the Card component */}

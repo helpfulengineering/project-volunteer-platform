@@ -34,7 +34,7 @@
 }
 
 .get-started-button {
-    background-color: green;
+    background-color: #3B8223;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -66,15 +66,6 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-}
-
-.sort-by {
-    display: flex;
-    align-items: center;
-}
-
-.sort-by label {
-    margin-right: 0.5rem;
 }
 
 .dashboard-section {

@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '../components/Card';
+import SortDropdown from '../components/SortDropdown';
 import opportunitiesIcon from '../assets/opportunities_icon.png';
 import './Opportunities.css';
 
 const Opportunities: React.FC = () => {
+
+  const [sortValue, setSortValue] = useState("recent");
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setSortValue(e.target.value);
+      // TODO: sort logic goes here
+    };
+
   return (
     <main className="opportunities-content">
       <div className="content-header">
         <h2>Opportunities</h2>
-        <div className="sort-by">
-          <label htmlFor="sortBy">Sort by:</label>
-          <select id="sortBy">
-            <option value="recent">Most Recent</option>
-            <option value="oldest">Oldest</option>
-          </select>
-        </div>
+        <SortDropdown value={sortValue} onChange={handleSortChange} />
       </div>
       <section className="dashboard-section">
         {/* Use the Card component */}

@@ -1,25 +1,123 @@
 .opportunities-content {
-    flex-grow: 1;
-    padding: 2rem;
-    overflow-y: auto;
-  }
-  
-  .content-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .sort-by {
-    display: flex;
-    align-items: center;
-  }
-  
-  .sort-by label {
-    margin-right: 0.5rem;
-  }
-  
-  .dashboard-section {
-    margin-bottom: 2rem;
-  }
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sort-by {
+  display: flex;
+  align-items: center;
+}
+
+.sort-by label {
+  margin-right: 0.5rem;
+}
+
+.dashboard-section {
+  margin-bottom: 2rem;
+}
+
+.opportunities-header-card {
+  width: 100%;
+  background-color: white;
+  padding: 16px 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.opportunities-header-card h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.opportunities-tabs {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tab-button {
+  flex: 1;
+  padding: 1rem;
+  background-color: white;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab-button:not(:last-child) {
+  border-right: none;
+}
+
+.tab-button.active {
+  background-color: #003366;
+  color: white;
+}
+
+.opportunities-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.controls-left {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.control-button {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: #717171;
+  border: 2px solid #ddd;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.controls-right {
+  display: flex;
+  align-items: center;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.9rem;
+  color: #717171;
+  width: 200px;
+}
+
+.icon-image {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}

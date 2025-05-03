@@ -52,7 +52,7 @@
 }
 
 .active-tab {
-  background-color: #d0f0c0;
+  background-color: #e0e0e0;
   font-weight: bold;
 }
 
@@ -66,7 +66,8 @@
 
 .content {
   flex-grow: 1;
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   overflow-y: auto;
   width: 100%;
 }

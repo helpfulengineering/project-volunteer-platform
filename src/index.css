@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 body {
   margin: 0;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter;
+  font-style: normal;
   height: 100vh;
   width: 100vw;
 }
@@ -13,7 +16,7 @@ body {
 
 .dashboard-section {
   margin-bottom: 2rem;
-  max-height: 21.5rem;
+  max-height: 24rem;
   overflow-y: auto;
 }
 

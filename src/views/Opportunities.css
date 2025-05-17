@@ -8,13 +8,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .opportunities-header-card {
   width: 100%;
   background-color: white;
-  padding: 1px 0;
+  padding: 0.5px 0;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
@@ -29,7 +29,7 @@
 .opportunities-tabs {
   display: flex;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .tab-button {

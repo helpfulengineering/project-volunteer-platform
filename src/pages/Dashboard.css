@@ -1,6 +1,7 @@
 .content {
   flex-grow: 1;
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   width: 100%;
   height: 100%;
 }

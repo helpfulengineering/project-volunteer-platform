@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  background: linear-gradient(180deg, rgb(117, 81, 194), rgb(255, 255, 255));
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100vh;
   width: 100vw;
@@ -10,6 +9,35 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.dashboard-section {
+  margin-bottom: 2rem;
+  max-height: 21.5rem;
+  overflow-y: auto;
+}
+
+.sort-by {
+  display: flex;
+  align-items: center;
+}
+
+.sort-by label {
+  margin-right: 0.5rem;
+}
+
+.dashboard-section::-webkit-scrollbar {
+  width: 6px;
+  height: 20px;
+}
+
+.dashboard-section::-webkit-scrollbar-thumb {
+  background-color: #003366;
+  border-radius: 10px;
+}
+
+.dashboard-section::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 button {

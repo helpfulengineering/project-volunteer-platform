@@ -8,34 +8,27 @@ import './Opportunities.css';
 
 const Opportunities: React.FC = () => {
   const [activeTab, setActiveTab] = useState('volunteer');
-
+  const tabs = [
+    { id: 'volunteer', label: 'Volunteer Roles' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'challenges', label: 'Challenges' },
+  ];
   return (
     <main className="opportunities-content">
       <div className="opportunities-header-card">
         <h1>Helpful Opportunities</h1>
       </div>
-
       <div className="opportunities-tabs">
-        <button
-          className={activeTab === 'volunteer' ? 'tab-button active' : 'tab-button'}
-          onClick={() => setActiveTab('volunteer')}
-        >
-          Volunteer Roles
-        </button>
-        <button
-          className={activeTab === 'projects' ? 'tab-button active' : 'tab-button'}
-          onClick={() => setActiveTab('projects')}
-        >
-          Projects
-        </button>
-        <button
-          className={activeTab === 'challenges' ? 'tab-button active' : 'tab-button'}
-          onClick={() => setActiveTab('challenges')}
-        >
-          Challenges
-        </button>
+      {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            className={`tab-button${activeTab === tab.id ? ' active' : ''}`}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
-
       <div className="opportunities-controls">
         <div className="controls-left">
           <button className="control-button">
@@ -76,6 +69,20 @@ const Opportunities: React.FC = () => {
           title="Project Title 3"
           info="Author C • Date C"
           points={['Point C1', 'Point C2', 'Point C3']}
+          icon={opportunitiesIcon}
+          buttonText="Apply"
+        />
+        <Card
+          title="Project Title 4"
+          info="Author D • Date D"
+          points={['Point D1', 'Point D2', 'Point D3']}
+          icon={opportunitiesIcon}
+          buttonText="Apply"
+        />
+        <Card
+          title="Project Title 5"
+          info="Author E • Date E"
+          points={['Point E1', 'Point E2', 'Point E3']}
           icon={opportunitiesIcon}
           buttonText="Apply"
         />

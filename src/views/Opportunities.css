@@ -11,30 +11,16 @@
   margin-bottom: 1rem;
 }
 
-.sort-by {
-  display: flex;
-  align-items: center;
-}
-
-.sort-by label {
-  margin-right: 0.5rem;
-}
-
-.dashboard-section {
-  margin-bottom: 2rem;
-}
-
 .opportunities-header-card {
   width: 100%;
   background-color: white;
-  padding: 16px 0;
+  padding: 1px 0;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
+  margin-bottom: 15px;
 }
 
 .opportunities-header-card h1 {
-  margin: 0;
   font-size: 1.8rem;
   font-weight: 600;
   color: #333;
@@ -43,8 +29,7 @@
 .opportunities-tabs {
   display: flex;
   width: 100%;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
 }
 
 .tab-button {

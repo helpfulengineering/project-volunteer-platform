@@ -1,0 +1,157 @@
+.profile-view-container {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.profile-heading {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.profile-card h3,
+.experience-card h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-text h3 {
+  font-size: 3rem;
+}
+
+.profile-card h4,
+.profile-details h4,
+.experience-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+.profile-card, .experience-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.profile-info {
+  display: flex;
+}
+
+.profile-picture {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+  object-fit: cover;
+}
+
+
+.profile-text h3 {
+  margin: 0 0 0.25rem;
+}
+
+.profile-edit .edit-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.profile-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.profile-link {
+  color: #333;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.profile-link .icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}
+
+.profile-link:hover {
+  background-color: #f9fafb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.profile-separator {
+  margin: 1.5rem 0;
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.profile-details .skill-boxes {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem;
+  flex-wrap: wrap;
+}
+
+.skill-box {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.profile-summary {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.experience-entry {
+  margin-top: 1.5rem;
+}
+
+.company-name, .experience-dates {
+  margin: 0.25rem 0;
+  font-weight: 550;
+  font-size: 1rem;
+  color: black;
+}
+
+.experience-list {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.profile-scroll-section {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.profile-scroll-section::-webkit-scrollbar {
+  width: 6px;
+  height: 20px;
+}
+
+.profile-scroll-section::-webkit-scrollbar-thumb {
+  background-color: #003366;
+  border-radius: 10px;
+}
+
+.profile-scroll-section::-webkit-scrollbar-track {
+  background: transparent;
+}

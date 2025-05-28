@@ -1,0 +1,150 @@
+# .github/workflows/manage-auth0-redirects.yml
+name: Manage Auth0 Redirect URLs
+
+on:
+  workflow_run:
+    # Triggered by the completion of the 'PR Trigger' workflow
+    workflows: ["PR Trigger"] # Name of the workflow defined above
+    types: [completed] # Trigger when Workflow A completes, regardless of success/failure
+    # IMPORTANT: This workflow MUST run in the context of your BASE repository.
+    # Restrict it to your main development branches where secrets are available
+    # and the workflow file itself is protected by branch rules.
+    branches: [main] # <<< CONFIGURE YOUR BASE BRANCHES HERE (e.g., main, develop, production)
+
+jobs:
+  manage_redirect:
+    runs-on: ubuntu-latest
+    # This job runs even if the triggering workflow_run (Workflow A) failed,
+    # especially to handle 'closed' PRs for cleanup. We check the PR action within the job.
+    environment: auth0
+    env:
+      AUTH0_DOMAIN: ${{ env.AUTH0_DOMAIN }}
+      AUTH0_APP_CLIENT_ID: ${{ env.AUTH0_APP_CLIENT_ID }}
+      # Base URL pattern for your ephemeral PR environments.
+      # {pr_id} will be replaced with the pull request number.
+      # EXAMPLE: "https://pr-{pr_id}.my-app.staging.example.com/callback"
+      REDIRECT_URL_PATTERN: "https://pr-{pr_id}.your-staging-domain.com/callback" # <<< CONFIGURE THIS
+
+    steps:
+      - name: Set up jq and Install Auth0 CLI
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+          # Install the Auth0 CLI
+          curl -sSfL https://raw.githubusercontent.com/auth0/auth0-cli/main/cli/install.sh | sh
+
+      - name: Extract Pull Request Info from Workflow Run Event
+        id: pr_info
+        run: |
+          # Fetch the full workflow run payload to get the original event that triggered Workflow A.
+          # The GITHUB_TOKEN is available here because this job runs in the base repository context.
+          # The event_url points to the original event payload (e.g., the pull_request event).
+          EVENT_PAYLOAD=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                                -H "Accept: application/vnd.github.v3+json" \
+                                "${{ github.event.workflow_run.event_url }}")
+
+          EVENT_TYPE=$(echo "$EVENT_PAYLOAD" | jq -r '.event_name')
+          PR_ACTION=""
+          PR_NUMBER=""
+
+          # Verify if the event was a pull_request and extract details
+          if [ "$EVENT_TYPE" == "pull_request" ]; then
+            PR_ACTION=$(echo "$EVENT_PAYLOAD" | jq -r '.payload.action')
+            PR_NUMBER=$(echo "$EVENT_PAYLOAD" | jq -r '.payload.pull_request.number')
+            echo "Detected PR Action: $PR_ACTION"
+            echo "Detected PR Number: $PR_NUMBER"
+          else
+            echo "Workflow was not triggered by a pull_request event (${EVENT_TYPE}). No Auth0 callback action taken."
+            # Exit successfully if not a PR event we care about, to avoid unnecessary failures.
+            exit 0
+          fi
+
+          if [ -z "$PR_NUMBER" ]; then
+              echo "Error: Could not determine PR number from the payload. This might indicate an unexpected PR state or payload structure."
+              exit 1 # Fail if PR number is critical and missing.
+          fi
+
+          # Export these as environment variables for subsequent steps
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+          echo "PR_ACTION=$PR_ACTION" >> $GITHUB_ENV
+
+      - name: Manage Auth0 Redirect URL
+        # Only proceed if a PR number was successfully extracted in the previous step
+        if: env.PR_NUMBER
+        run: |
+          # --- Define a helper function to run Auth0 CLI with scoped credentials ---
+          # This function is crucial for security. It ensures AUTH0_DOMAIN, AUTH0_CLIENT_ID,
+          # and AUTH0_CLIENT_SECRET are ONLY set for the duration of the `./auth0` command.
+          # This prevents them from leaking to the shell environment of the entire `run:` step
+          # or being accidentally accessed by other commands.
+          run_auth0_cli() {
+            AUTH0_DOMAIN="${{ env.AUTH0_DOMAIN }}" \
+            AUTH0_CLIENT_ID="${{ secrets.AUTH0_MANAGEMENT_CLIENT_ID }}" \
+            AUTH0_CLIENT_SECRET="${{ secrets.AUTH0_MANAGEMENT_SECRET }}" \
+            ./auth0 "$@" # Passes all arguments to the Auth0 CLI
+          }
+
+          # --- Helper function to fetch the current callbacks array from Auth0 ---
+          get_current_callbacks_json() {
+            # Uses the run_auth0_cli helper for secure credential handling
+            run_auth0_cli clients show "${{ env.AUTH0_APP_CLIENT_ID }}" --json | jq -r '.callbacks // []'
+          }
+
+          # --- Helper function to update the callbacks in Auth0 ---
+          update_callbacks_in_auth0() {
+            local callbacks_json="$1" # Expects a JSON array of URLs
+            local callbacks_string=""
+
+            # Convert the JSON array to a comma-separated string, as required by Auth0 CLI
+            if [ "$(echo "$callbacks_json" | jq 'length')" -gt 0 ]; then
+                callbacks_string=$(echo "$callbacks_json" | jq -r 'join(",")')
+            fi
+
+            echo "Attempting to update Auth0 callbacks with string: '$callbacks_string'"
+
+            # Use the run_auth0_cli helper to perform the update securely
+            run_auth0_cli clients update "${{ env.AUTH0_APP_CLIENT_ID }}" \
+              --callbacks "$callbacks_string"
+
+            echo "Auth0 callbacks updated successfully."
+          }
+
+          # --- Main logic based on the detected PR action ---
+          PR_NUMBER="${{ env.PR_NUMBER }}"
+          PR_ACTION="${{ env.PR_ACTION }}"
+          # Construct the specific redirect URL for this PR's ephemeral environment
+          DYNAMIC_REDIRECT_URL=$(echo "${{ env.REDIRECT_URL_PATTERN }}" | sed "s|{pr_id}|$PR_NUMBER|")
+
+          case "$PR_ACTION" in
+            # Actions to add or update the URL
+            opened|reopened|synchronize)
+              echo "PR action is '$PR_ACTION'. Adding/updating redirect URL: $DYNAMIC_REDIRECT_URL"
+              CURRENT_CALLBACKS_JSON=$(get_current_callbacks_json)
+              # Add the new URL, ensuring uniqueness (jq 'unique' and '+' operator)
+              UPDATED_CALLBACKS_JSON=$(echo "$CURRENT_CALLBACKS_JSON" | jq --arg url "$DYNAMIC_REDIRECT_URL" 'unique | . + [$url] | unique')
+              update_callbacks_in_auth0 "$UPDATED_CALLBACKS_JSON"
+              ;;
+
+            # Action to remove the URL
+            closed)
+              echo "PR action is '$PR_ACTION'. Removing redirect URL: $DYNAMIC_REDIRECT_URL"
+              CURRENT_CALLBACKS_JSON=$(get_current_callbacks_json)
+              # Filter out the specific URL to be removed (jq 'map(select(. != $url))')
+              UPDATED_CALLBACKS_JSON=$(echo "$CURRENT_CALLBACKS_JSON" | jq --arg url "$DYNAMIC_REDIRECT_URL" 'map(select(. != $url)) | unique')
+              update_callbacks_in_auth0 "$UPDATED_CALLBACKS_JSON"
+              ;;
+
+            *)
+              echo "Unsupported or unhandled PR action: '$PR_ACTION'. No Auth0 callback action taken."
+              ;;
+          esac
+
+      - name: Verify Auth0 App Config (Optional)
+        # Always run this step for debugging purposes, even if previous steps failed
+        if: always()
+        run: |
+          echo "Verifying current callbacks in Auth0 after operation..."
+          # Use the run_auth0_cli helper to show current callbacks securely
+          AUTH0_DOMAIN="${{ env.AUTH0_DOMAIN }}" \
+          AUTH0_CLIENT_ID="${{ secrets.AUTH0_MANAGEMENT_CLIENT_ID }}" \
+          AUTH0_CLIENT_SECRET="${{ secrets.AUTH0_MANAGEMENT_SECRET }}" \
+          ./auth0 clients show ${{ env.AUTH0_APP_CLIENT_ID }} --json | jq '.callbacks'

@@ -71,3 +71,28 @@
 }
 
 
+/* Styles for PublicHeader component - testing and development purposes only */
+.public-landing {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .welcome-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: white;
+  }
+  
+  .loading {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

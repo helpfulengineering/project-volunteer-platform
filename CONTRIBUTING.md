@@ -34,7 +34,10 @@ To send us a pull request, please:
 3. Ensure local tests pass.
 4. Commit to your fork using clear commit messages.
 5. Send us a pull request, answering any default questions in the pull request interface.
+    1. Open the Pull Request in **Draft** mode and leave it in this state until such a time as you are ready for it to be reviewed.
+    2. Ensure your Pull Request references the Issue you are addressing (either pre-existing or created by you) by using one of the methods described [here](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
 6. Pay attention to any automated CI failures reported in the pull request, and stay involved in the conversation.
+7. When you are satisfied with the state of the tests, the preview environment, and the quality of the code, mark your Pull Request as `Ready for Review`.
 
 GitHub provides additional document on [forking a repository](https://help.github.com/articles/fork-a-repo/) and
 [creating a pull request](https://help.github.com/articles/creating-a-pull-request/).

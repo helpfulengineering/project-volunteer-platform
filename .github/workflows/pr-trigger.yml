@@ -1,0 +1,27 @@
+# .github/workflows/pr-checks.yml
+name: PR Trigger
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed] # Triggers on PR creation, updates, and closure
+    # You can restrict branches here if your PRs only target specific ones
+    # e.g., branches: [main, develop]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        # For fork PRs, GITHUB_TOKEN is limited (read-only) and other secrets are unavailable.
+        # This is the default and safest behavior for code quality checks.
+
+      - name: Run placeholder build and test steps
+        run: |
+          echo "Running your application's build, test, and linting steps here."
+          echo "This job ensures code quality and acts as the trigger for Auth0 updates."
+          # Example:
+          # npm install
+          # npm test
+          # npm run build
+          # Any other CI/CD checks...

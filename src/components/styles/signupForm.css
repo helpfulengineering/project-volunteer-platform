@@ -1,0 +1,48 @@
+/* Form container - 75% width and responsive */
+.signup-form-container {
+  width: 75%;
+  max-width: 1200px; /* Prevents it from getting too wide on large screens */
+  margin: 0 auto; /* Centers the container */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Form field background color and padding */
+.form-control {
+  background-color: #F7F7FA;
+  padding-bottom: 12px;
+  /* border: 1px solid #ddd; */
+  /* border-radius: 4px; */
+}
+
+/* Add bottom padding to each form group */
+.form-group {
+  padding-bottom: 12px;
+  margin-bottom: 1rem; /* Maintains spacing between form groups */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .signup-form-container {
+    width: 90%; /* Wider on mobile devices */
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-form-container {
+    width: 95%; /* Even wider on small mobile devices */
+    padding: 10px;
+  }
+}
+
+/* Optional: Style the form itself for better layout */
+.signup-form {
+  width: 100%;
+}
+
+/* Optional: Ensure form fields take full width within container */
+.signup-form-fields .form-control {
+  width: 100%;
+  box-sizing: border-box;
+}

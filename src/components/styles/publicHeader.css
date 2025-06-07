@@ -1,0 +1,132 @@
+.header-container {
+  width: 100%;
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 0;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  height: 70px;
+  padding: 0 32px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+  }
+  
+
+.helpful-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--header-text);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-links a {
+  color: var(--header-text);
+  text-decoration: none;
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color 0.15s;
+  padding: 2px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  color: #E5A932;
+  border-bottom: 2px solid #E5A932;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex: 0 0 auto;
+}
+
+.donate-button {
+  background-color: #3B8223;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1.03rem;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-right: 8px;
+}
+
+.donate-button:hover,
+.donate-button:focus {
+  background-color: #2E5C1A;
+}
+
+.signinup-button {
+  background: #fff;
+  color: #000;
+  border: 2px solid #1F5378;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1.03rem;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.signinup-button:hover,
+.signinup-button:focus {
+  background: #E5A932;
+  color: #1F5378;
+  border-color: #E5A932;
+}
+
+/* Responsive: Stack nav on mobile */
+/* @media (max-width: 900px) {
+  .header-nav {
+    flex-direction: column;
+    height: auto;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .logo-section,
+  .header-actions {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .nav-links {
+    gap: 1.2rem;
+    margin: 8px 0;
+    width: 100%;
+    justify-content: center;
+  }
+} */

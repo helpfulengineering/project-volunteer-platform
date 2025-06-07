@@ -1,0 +1,202 @@
+.signup-page {
+    background: #fff;
+    min-height: 100vh;
+    padding-bottom: 48px;
+  }
+  
+  .signup-page .signup-form-container {
+    background: transparent;
+    max-width: 1080px;
+    margin: 48px auto 0 auto;
+    padding: 0 0 30px 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .signup-page .signup-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin: 40px auto 24px auto;
+    letter-spacing: -1px;
+    max-width: 95%;
+  }
+  
+  .signup-page .signup-title .highlight {
+    color: #3B8223;
+  }
+  
+  /* Form fields */
+  .signup-page .signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  
+  .signup-page .signup-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+  }
+  
+  .signup-page .signup-form label {
+    font-size: 1.07rem;
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 0;
+    margin-left: 8px;
+    margin-top: 0;
+    letter-spacing: 0.01em;
+  }
+  
+  /* Input and select styling */
+  .signup-page .signup-form .form-control {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: #fff;
+    font-size: 1.15rem;
+    padding: 16px 24px;
+    margin-top: 4px;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    appearance: none;
+    outline: none;
+  }
+  
+  .signup-page .signup-form .form-control:focus {
+    border-color: #366ADA;
+    background: #F7F7FA;
+  }
+  
+  .signup-page .signup-form .form-control::placeholder {
+    color: #9b9bae;
+    font-size: 1.08rem;
+    opacity: 1;
+  }
+  
+  /* Down arrow for select */
+  .signup-page .signup-form select.form-control {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L8 8L15 1' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 18px 12px;
+    padding-right: 44px;
+    cursor: pointer;
+  }
+  
+  /* For multi-select, remove arrow */
+  .signup-page .signup-form select.form-control[multiple] {
+    background-image: none;
+    height: 56px;
+    min-height: 56px;
+    padding-right: 24px;
+  }
+  
+  .signup-page .skills-select-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Placeholder style for select */
+  .signup-page .signup-form select.form-control:invalid {
+    color: #9b9bae;
+  }
+  
+  /* Button styling */
+  .signup-page .signup-form .submit-btn {
+    width: 100%;
+    max-width: 340px;
+    display: block;
+    margin: 32px auto 0 auto;
+    background: #3B8223;
+    border: none;
+    border-radius: 14px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding: 18px 0;
+    box-shadow: none;
+    transition: background 0.2s;
+    letter-spacing: 0.01em;
+  }
+  
+  .signup-page .signup-form .submit-btn:disabled {
+    background: #b5c7d6;
+    color: #fff;
+  }
+  
+  .signup-page .signup-form .submit-btn:hover, 
+  .signup-page .signup-form .submit-btn:focus {
+    background: #18425F;
+  }
+  
+  /* Terms and checkbox */
+  .signup-page .terms-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  
+  .signup-page .terms-link {
+    color: #366ADA;
+    font-weight: 500;
+    padding-left: 0;
+    text-decoration: underline;
+  }
+  
+  .signup-page .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    margin-top: 10px;
+  }
+  
+  .signup-page .form-text {
+    color: #666;
+    font-size: 0.95rem;
+    margin-top: 6px;
+    margin-left: 8px;
+  }
+  
+  /* Modal Styles */
+  .signup-page .modal-content {
+    border-radius: 12px;
+  }
+  
+  .signup-page .modal-header {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .signup-page .modal-footer {
+    border-top: 1px solid #e5e5e5;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .signup-page .signup-form-container {
+      padding: 0 8px;
+    }
+    
+    .signup-page .signup-title {
+      font-size: 1.3rem;
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .signup-page .signup-form .submit-btn {
+      font-size: 1.1rem;
+      padding: 14px 0;
+    }
+    
+    .signup-page .signup-form .form-control {
+      font-size: 1rem;
+      padding: 12px 16px;
+    }
+  }

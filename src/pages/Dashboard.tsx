@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Dashboard.css';
+import './styles/Dashboard.css';
 import Header from '../components/Header.tsx';
 import MyProjects from '../views/MyProjects';
 import Opportunities from '../views/Opportunities';

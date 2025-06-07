@@ -2,7 +2,8 @@
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    margin-top: 0.75rem;
     overflow: hidden;
   }
   
@@ -17,6 +18,7 @@
   }
   
   .card-title {
+    font-weight: 600;
     margin-left: 0.5rem;
     flex-grow: 1;
   }
@@ -41,16 +43,18 @@
   }
   
   .card-points {
+    color:#5b5f64;
     list-style-type: disc;
     padding-left: 1.5rem;
     margin: 0;
   }
   
   .join-now-button {
-    background-color: green;
-    color: white;
-    border: none;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
   }
+  

@@ -11,15 +11,6 @@
     margin-bottom: 1rem;
   }
   
-  .sort-by {
-    display: flex;
-    align-items: center;
-  }
-  
-  .sort-by label {
-    margin-right: 0.5rem;
-  }
-  
   .dashboard-section {
     margin-bottom: 2rem;
   }

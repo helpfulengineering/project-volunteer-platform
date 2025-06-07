@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+// Dashboard.tsx
+import React, { useState, useEffect, useRef } from 'react';
 import './Dashboard.css';
 import Header from '../components/Header.tsx';
 import MyProjects from '../views/MyProjects';
 import Opportunities from '../views/Opportunities';
-import DashboardView from '../views/DashboardView'; // Import the new DashboardView component
+import DashboardView from '../views/DashboardView';
+import ProfileView from '../views/ProfileView';
 
-// Importing icons for sidebar
 import dashboardIcon from '../assets/dashboard_icon.png';
 import projectsIcon from '../assets/projects_icon.png';
 import opportunitiesIcon from '../assets/opportunities_icon.png';
@@ -13,16 +14,23 @@ import aboutIcon from '../assets/about_icon.png';
 import toolsIcon from '../assets/tools_icon.png';
 import settingsIcon from '../assets/settings_icon.png';
 
+type ViewType = 'DashboardView' | 'MyProjects' | 'Opportunities' | 'ProfileView';
+
 const Dashboard: React.FC = () => {
-  // State to track the current active view
-  const [activeView, setActiveView] = useState<'DashboardView' | 'MyProjects' | 'Opportunities'>('DashboardView');
+  const [activeView, setActiveView] = useState<ViewType>('DashboardView');
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  }, [activeView]);
 
   return (
     <div className="dashboard-container">
-      <Header />
+      <Header onProfileClick={() => setActiveView('ProfileView')} />
       <div className="dashboard-content">
         <aside className="sidebar">
-          {/* Dashboard Section */}
           <div className="sidebar-section">
             <span
               className={`sidebar-tab ${activeView === 'DashboardView' ? 'active-tab' : ''}`}
@@ -32,8 +40,6 @@ const Dashboard: React.FC = () => {
               Dashboard
             </span>
           </div>
-
-          {/* Manage Section */}
           <div className="sidebar-section">
             <label className="sidebar-label">Manage</label>
             <div className="sidebar-tabs">
@@ -53,8 +59,6 @@ const Dashboard: React.FC = () => {
               </span>
             </div>
           </div>
-
-          {/* Set Up Section */}
           <div className="sidebar-section">
             <label className="sidebar-label">Set Up</label>
             <div className="sidebar-tabs">
@@ -73,17 +77,14 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </aside>
-        <main className="content">
-          {/* Conditionally Render Views */}
+
+        <main className={`content ${activeView === 'DashboardView' ? 'scrollable-content' : ''}`} ref={contentRef}>
           {activeView === 'DashboardView' && <DashboardView />}
           {activeView === 'MyProjects' && <MyProjects />}
           {activeView === 'Opportunities' && <Opportunities />}
+          {activeView === 'ProfileView' && <ProfileView />}
         </main>
       </div>
-      {/* Footer commented out */}
-      {/* <footer className="dashboard-footer">
-        <p>© 2025 Your Company. All rights reserved.</p>
-      </footer> */}
     </div>
   );
 };

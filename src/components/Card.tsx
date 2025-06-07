@@ -6,7 +6,7 @@ interface CardProps {
   info: string;
   points: string[];
   icon: string;
-  buttonText: string; // Add a new parameter for the button text
+  buttonText: string;
 }
 
 const Card: React.FC<CardProps> = ({ title, info, points, icon, buttonText }) => {

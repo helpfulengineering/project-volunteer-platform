@@ -1,3 +1,15 @@
+.content {
+  flex-grow: 1;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 100%;
+  height: 100%;
+}
+
+.scrollable-content {
+  overflow-y: auto;
+}
+
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -9,7 +21,7 @@
   display: flex;
   flex-grow: 1;
   background-color: #f0f2f5;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -27,8 +39,6 @@
 
 .sidebar-label {
   font-weight: bold;
-  display: flex;
-  align-items: center;
   margin-bottom: 1rem;
 }
 
@@ -42,49 +52,18 @@
   display: flex;
   align-items: center;
   padding: 0.5rem;
-  background-color: #ffffff;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.sidebar-tab:hover {
-  background-color: #e0e0e0;
-}
-
+.sidebar-tab:hover,
 .active-tab {
-  background-color: #d0f0c0;
+  background-color: #e0e0e0;
   font-weight: bold;
 }
 
-.icon-placeholder {
+.sidebar-icon {
   width: 20px;
   height: 20px;
-  background-color: #282c34;
   margin-right: 0.5rem;
-  border-radius: 4px;
-}
-
-.content {
-  flex-grow: 1;
-  padding: 2rem;
-  overflow-y: auto;
-  width: 100%;
-}
-
-.dashboard-footer {
-  background-color: #282c34;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  width: 100%;
-  position: relative;
-  margin-top: auto;
-}
-
-.dashboard-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  margin-bottom: 2rem;
 }

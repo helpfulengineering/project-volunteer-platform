@@ -83,7 +83,7 @@ const ProfileView: React.FC = () => (
         <h2>Experience</h2>
         {experiences.map(({ role, company, dates, duration, items }) => (
           <div key={role} className="experience-entry">
-            <h4>{role}</h4>
+            <p className="role-title">{role}</p>
             <p className="company-name">{company}</p>
             <p className="experience-dates">
               {dates} <span className="duration">{duration}</span>

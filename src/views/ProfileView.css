@@ -102,6 +102,12 @@
   margin-top: 1.5rem;
 }
 
+.role-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
 .company-name {
   margin: 0.25rem 0;
   font-weight: 550;
